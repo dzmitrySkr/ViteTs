@@ -8,7 +8,7 @@ let getProduct = async (id: string): Promise<Product> => {
 }
 
 export const useProduct = (id: string) => {
-    return useQuery({
+    return useQuery<Product>({
         queryKey: ["product", id],
         queryFn: () => getProduct(id),
         placeholderData: keepPreviousData,
