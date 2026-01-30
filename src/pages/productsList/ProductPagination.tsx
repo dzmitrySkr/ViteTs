@@ -45,9 +45,15 @@ export let ProductPagination = ()=>{
             }}
             size="small"
             value={pageInput}
-            onChange={(e) => setPageInput(String(e.target.value))}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPageInput(Number(e.target.value))
+            }
             onBlur={() => changePage(pageInput)}
-            onKeyDown={(e) => e.key === "Enter" && e.target.blur()}
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                if (e.key === "Enter") {
+                    e.currentTarget.blur();
+                }
+            }}
         />
 
         <Button

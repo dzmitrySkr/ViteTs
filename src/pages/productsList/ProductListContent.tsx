@@ -1,9 +1,28 @@
 import {Box, Paper, Stack, Typography} from "@mui/material";
 import {Link} from "@tanstack/react-router";
 
+interface Product {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    thumbnail: string;
+    images:string[];
+}
+interface ProductsResponse {
+    products: Product[];
+    total: number;
+    skip: number;
+    limit: number;
+}
+type ProductListContentProps = {
+    isLoading: boolean;
+    data?: ProductsResponse;
+};
 
 
-let ProductListContent = ({isLoading, data}) =>{
+
+let ProductListContent = ({isLoading, data}: ProductListContentProps) =>{
     return isLoading ? <Stack
             alignItems="center"
             justifyContent="center"
@@ -16,10 +35,14 @@ let ProductListContent = ({isLoading, data}) =>{
                justifyContent="center"
                minHeight="75vh"
                                         >
-            {data.products.map((product) => (
+            {data?.products.map((product) => (
+
                 <Paper
-                    key={product.id}
+                    component={Link as any}
+                    to="/product/$productId"
+                    params={{ productId: product.id }}
                     sx={{
+                        textDecoration: 'none',
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
@@ -32,9 +55,6 @@ let ProductListContent = ({isLoading, data}) =>{
                             background: "#f0f0f0b3",
                         }
                     }}
-                    component={Link}
-                    to="/product/$productId"
-                    params={{ productId: product.id }}
                 >
 
                     <Box
@@ -58,7 +78,10 @@ let ProductListContent = ({isLoading, data}) =>{
                             ${product.price}
                         </Typography>
                     </Stack>
-                </Paper>))}
+                </Paper>
+
+
+            ))}
         </Stack>
 }
 export default ProductListContent

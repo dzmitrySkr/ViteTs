@@ -81,7 +81,7 @@ export const ProductPage = () => {
                     <Stack spacing={1}>
                         {data.reviews.map((rev) => (
                             <Paper
-                                key={rev.id || rev.date}
+                                key={rev.date}
                                 sx={{
                                     p: 1,
                                     display: "flex",

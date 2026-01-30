@@ -1,4 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData  } from '@tanstack/react-query';
+
+type Reviews = {
+    "rating": number,
+    "comment": string,
+    "date": string,
+    "reviewerName": string,
+    "reviewerEmail": string
+}
 
 interface Product {
     id: number;
@@ -7,6 +15,10 @@ interface Product {
     price: number;
     thumbnail: string;
     images: string[];
+    rating: number;
+    category:string;
+    brand:string;
+    reviews:Reviews[];
 }
 
 let getProduct = async (id: string): Promise<Product> => {
@@ -19,6 +31,7 @@ export const useProduct = (id: string) => {
     return useQuery({
         queryKey: ["product", id],
         queryFn: () => getProduct(id),
-        keepPreviousData: true, // сохраняет старые данные при смене страницы
+        placeholderData: keepPreviousData,
     });
 };
+

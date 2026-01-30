@@ -10,7 +10,7 @@ export let usePagination = () =>{
 
     const {data, isLoading, error } = useProducts(page, limit, search, category);
     const {data: categoriesData } = useCategories();
-    const [pageInput, setPageInput] = useState(page);
+    const [pageInput, setPageInput] = useState<number>(page);
     const totalPages:number = Math.max(1, Math.ceil((data?.total || 0) / limit));
 
     let changePage = (value:number):void =>{

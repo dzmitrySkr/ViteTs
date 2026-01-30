@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { QueryProvider } from '../app/providers/QueryProviders.tsx';
+import { QueryProviders } from '../app/providers/QueryProviders.tsx';
 import App from '../App.tsx';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const container = document.getElementById("root");
+if (!container) throw new Error("Root container not found");
+
+const root = ReactDOM.createRoot(container);
+root.render(
     <React.StrictMode>
-        <QueryProvider>
+        <QueryProviders>
             <App />
-        </QueryProvider>
+        </QueryProviders>
     </React.StrictMode>
 );
