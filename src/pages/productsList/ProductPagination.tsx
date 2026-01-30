@@ -1,7 +1,8 @@
 import {Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import {usePagination} from "../../hooks/usePagination.tsx";
+// @ts-ignore
+import {usePagination} from "@/hooks/usePagination.tsx";
 
 
 
@@ -70,7 +71,7 @@ export let ProductPagination = ()=>{
 
 
         <FormControl size="small" sx={{ minWidth: 120 }}>
-            <InputLabel id="page-size-label">На странице</InputLabel>
+            <InputLabel id="page-size-label">on Page</InputLabel>
 
             <Select<number>
                 labelId="page-size-label"

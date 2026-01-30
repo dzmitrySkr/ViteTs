@@ -23,11 +23,8 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({getParentRoute: () => rootRoute,
     path: "/",
     beforeLoad: () => {
-
         let {user} = useAuthStore.getState();
-        if (user) {
-            throw redirect({ to: "/products" });
-        }
+        if (user) throw redirect({ to: "/products" });
         throw redirect({ to: "/login" });
     },})
 

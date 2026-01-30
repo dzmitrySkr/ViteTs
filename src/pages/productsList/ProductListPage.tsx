@@ -50,7 +50,7 @@ export const ProductsList = () => {
                     />
                     <Accordion elevation={0} disableGutters>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography fontWeight={400}>Категории</Typography>
+                            <Typography fontWeight={400}>Categories</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             {categoriesData && <List dense>

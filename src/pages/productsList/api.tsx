@@ -22,6 +22,7 @@ export const useProducts = ( page: number, limit: number, search: string, catego
         queryKey: ["products", search, limit, page, category],
         queryFn: () => getProducts(limit, search, page, category),
         placeholderData: keepPreviousData,
+        staleTime: 600000,
     });
 };
 
@@ -35,6 +36,7 @@ export const useCategories = () => {
     return useQuery<string[]>({
         queryKey: ["categories"],
         queryFn: () => getCategories(),
+        staleTime: 600000,
     });
 };
 

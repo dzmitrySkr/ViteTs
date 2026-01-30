@@ -1,5 +1,6 @@
 import { Navigate } from "@tanstack/react-router";
-import {useAuthStore} from "../../shared/AuthStore.tsx";
+// @ts-ignore
+import {useAuthStore} from "@/shared/AuthStore.tsx";
 import type {ReactNode} from "react";
 
 interface Props {

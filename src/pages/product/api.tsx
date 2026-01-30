@@ -12,6 +12,7 @@ export const useProduct = (id: string) => {
         queryKey: ["product", id],
         queryFn: () => getProduct(id),
         placeholderData: keepPreviousData,
+        staleTime: 600000,
     });
 };
 
