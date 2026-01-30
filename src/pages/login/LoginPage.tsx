@@ -6,7 +6,7 @@ import {useAuthStore} from "../../shared/AuthStore.tsx";
 export const LoginPage = () => {
     let [name, setName] = useState<string>("")
     let [password, setPassword] = useState<string>("")
-    let {login, user} = useAuthStore()
+    let {login} = useAuthStore()
 
 
     const handleLogin = (): void => {

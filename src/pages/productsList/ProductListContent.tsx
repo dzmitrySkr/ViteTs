@@ -1,25 +1,6 @@
 import {Box, Paper, Stack, Typography} from "@mui/material";
 import {Link} from "@tanstack/react-router";
-
-interface Product {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    thumbnail: string;
-    images:string[];
-}
-interface ProductsResponse {
-    products: Product[];
-    total: number;
-    skip: number;
-    limit: number;
-}
-type ProductListContentProps = {
-    isLoading: boolean;
-    data?: ProductsResponse;
-};
-
+import type {ProductListContentProps} from '../../types/product.ts'
 
 
 let ProductListContent = ({isLoading, data}: ProductListContentProps) =>{

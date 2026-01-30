@@ -1,19 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { keepPreviousData } from '@tanstack/react-query';
-interface Product {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    thumbnail: string;
-}
-
-interface ProductsResponse {
-    products: Product[];
-    total: number;
-    skip: number;
-    limit: number;
-}
+import type {ProductsResponse} from '../../types/product.ts'
 
 let getProducts = async (limit:number = 10 , search: string = "", page:number = 1, category: string = ""): Promise<ProductsResponse> => {
     const skip = (page - 1) * limit;
