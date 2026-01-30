@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-
+import { keepPreviousData } from '@tanstack/react-query';
 interface Product {
     id: number;
     title: string;
@@ -31,21 +31,21 @@ let getProducts = async (limit:number = 10 , search: string = "", page:number = 
 }
 
 export const useProducts = ( page: number, limit: number, search: string, category: string ) => {
-    return useQuery({
+    return useQuery<ProductsResponse>({
         queryKey: ["products", search, limit, page, category],
         queryFn: () => getProducts(limit, search, page, category),
-        keepPreviousData: true,
+        placeholderData: keepPreviousData,
     });
 };
 
-let getCategories = async (): Promise<ProductsResponse> => {
+let getCategories = async (): Promise<string[]> => {
     let res = await fetch('https://dummyjson.com/products/category-list')
     if(!res.ok) throw new Error("Failed to fetch categories list.")
     return res.json()
 }
 
 export const useCategories = () => {
-    return useQuery({
+    return useQuery<string[]>({
         queryKey: ["categories"],
         queryFn: () => getCategories(),
     });

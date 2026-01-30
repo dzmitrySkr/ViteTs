@@ -3,9 +3,10 @@ import {useCategories, useProducts} from "../pages/productsList/api.tsx";
 import {useState} from "react";
 
 
+
 export let usePagination = () =>{
 
-    let {limit, page, setPage, category, search, setSearch, setCategory} = usePaginationStore()
+    let {limit, page, setPage, category, search, setSearch, setCategory, setLimit} = usePaginationStore()
 
     const {data, isLoading, error } = useProducts(page, limit, search, category);
     const {data: categoriesData } = useCategories();
@@ -50,6 +51,7 @@ export let usePagination = () =>{
         category,
         search,
         setSearch,
-        setCategory
+        setCategory,
+        setLimit
     }
 }

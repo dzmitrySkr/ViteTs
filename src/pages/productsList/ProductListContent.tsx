@@ -2,6 +2,7 @@ import {Box, Paper, Stack, Typography} from "@mui/material";
 import {Link} from "@tanstack/react-router";
 
 
+
 let ProductListContent = ({isLoading, data}) =>{
     return isLoading ? <Stack
             alignItems="center"
@@ -17,7 +18,6 @@ let ProductListContent = ({isLoading, data}) =>{
                                         >
             {data.products.map((product) => (
                 <Paper
-                    onClick={() => console.log("Paper clicked!")}
                     key={product.id}
                     sx={{
                         display: "flex",
@@ -26,11 +26,11 @@ let ProductListContent = ({isLoading, data}) =>{
                         width: { xs: "45%", sm: "30%", md: "15%" },
                         p: 2,
                         m: 1,
-                        maxHeight: "70%",
+                        maxHeight: "50%",
                         "&:hover": {
                             boxShadow: 6,
                             background: "#f0f0f0b3",
-                        },
+                        }
                     }}
                     component={Link}
                     to="/product/$productId"

@@ -5,12 +5,11 @@ import { Rating } from "react-simple-star-rating";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export const ProductPage = () => {
+
     const { productId } = useParams({ strict: false });
     const navigate = useNavigate();
     const { data, isLoading } = useProduct(productId);
-
     if (isLoading) return <div>Loading...</div>;
-
     if (!data) return <div>Product not found</div>;
 
     return (
