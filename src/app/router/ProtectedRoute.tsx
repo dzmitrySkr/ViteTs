@@ -1,19 +1,16 @@
 import { Navigate } from "@tanstack/react-router";
 // @ts-ignore
-import {useAuthStore} from "@/shared/AuthStore.tsx";
 import type {ReactNode} from "react";
+import {useMe} from "./api.tsx";
 
 interface Props {
     children: ReactNode;
 }
 
+
 export const ProtectedRoute = ({ children }: Props) => {
-
-    let {user} = useAuthStore();
-
-    if (!user) {
-        return <Navigate to="/login" />;
-    }
-    
-    return <>{children}</>;
+    const { data: user, isLoading, error } = useMe()
+    if (isLoading) return null
+    if (!user && error) return <Navigate to="/login" />
+    return children
 };

@@ -9,10 +9,9 @@ import { LoginPage } from "../../pages/login/LoginPage.tsx";
 import { ProductsList} from "../../pages/productsList/ProductListPage.tsx";
 import { ProductPage } from "../../pages/product/ProductPage.tsx";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { useAuthStore } from "../../shared/AuthStore.tsx";
 import {PublicRoute} from "./PublicRoute.tsx";
 import {RootLayout} from "../../pages/RootLayout.tsx";
-
+import {getMe} from "./api.tsx";
 
 
 const rootRoute = createRootRoute({
@@ -22,11 +21,16 @@ const rootRoute = createRootRoute({
 
 const indexRoute = createRoute({getParentRoute: () => rootRoute,
     path: "/",
-    beforeLoad: () => {
-        let {user} = useAuthStore.getState();
-        if (user) throw redirect({ to: "/products" });
-        throw redirect({ to: "/login" });
-    },})
+    beforeLoad: async () => {
+        try {
+            const user = await getMe();
+            if (user) throw redirect({ to: "/products" });
+        } catch (err) {
+            if (err) throw redirect({ to: "/login" });
+        }
+    },
+
+})
 
 const loginRoute = createRoute({
     getParentRoute: () => rootRoute,

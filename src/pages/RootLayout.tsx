@@ -1,14 +1,37 @@
 import { Outlet } from "@tanstack/react-router";
 import {AppBar, Toolbar, Typography, Button, Stack} from "@mui/material";
-import { useAuthStore } from "../shared/AuthStore.tsx";
+import {useRouter} from "@tanstack/react-router";
+import {useEffect, useState} from "react";
+import { useQueryClient } from '@tanstack/react-query'
+import { useMatch } from "@tanstack/react-router";
+import {productsListRoute} from "../app/router/Routes.tsx";
 
 export const RootLayout = () => {
 
-    let {user, logout} = useAuthStore();
+    // @ts-ignore
+    const match = useMatch(productsListRoute);
+    let queryClient =  useQueryClient()
+    const router = useRouter()
+    const [user, setUser] = useState<string | null>(null)
 
+    useEffect(() => {
+
+        const data = localStorage.getItem("userData")
+        if (data) {
+            const parsed = JSON.parse(data)
+            setUser(`${parsed.firstName} ${parsed.lastName}`)
+        }
+    }, [match])
+
+    const logout = () => {
+        queryClient.removeQueries({ queryKey: ['me'] })
+        localStorage.removeItem("userData")
+        localStorage.removeItem("token")
+        setUser(null)
+        router.navigate({ to: '/login' })
+    }
     return (
         <>
-
             <Stack >
                 <AppBar
                     position="sticky"
@@ -21,10 +44,10 @@ export const RootLayout = () => {
                     <Toolbar
                         sx={{
                             minHeight: 64,
-                            px: 3, // только внутренний паддинг
+                            px: 3,
                         }}
                     >
-                        {/* ЛОГО / НАЗВАНИЕ */}
+
                         <Typography
                             variant="h6"
                             sx={{
@@ -38,7 +61,7 @@ export const RootLayout = () => {
                             My Shop
                         </Typography>
 
-                        {/* ПОЛЬЗОВАТЕЛЬ */}
+
                         {user && (
                             <Typography
                                 variant="body2"
@@ -51,10 +74,9 @@ export const RootLayout = () => {
                             </Typography>
                         )}
 
-                        {/* КНОПКА */}
                         {user ? (
                             <Button
-                                onClick={logout}
+                                onClick={()=>logout()}
                                 sx={{
                                     color: '#E5E7EB',
                                     textTransform: 'none',

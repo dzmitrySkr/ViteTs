@@ -5,9 +5,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {usePagination} from "@/hooks/usePagination.tsx";
 
 
-
-
-
 export let ProductPagination = ()=>{
 
 

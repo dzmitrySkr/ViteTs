@@ -1,21 +1,21 @@
 import { Button, Stack, Typography, TextField } from "@mui/material";
 import {useState} from "react";
-import {redirect} from "@tanstack/react-router";
-import {useAuthStore} from "../../shared/AuthStore.tsx";
+import {useRouter} from "@tanstack/react-router";
+import {useLogin} from "../login/api.tsx"
+
+
 
 export const LoginPage = () => {
-    let [name, setName] = useState<string>("")
-    let [password, setPassword] = useState<string>("")
-    let {login} = useAuthStore()
-
+    let [name, setName] = useState<string>("emilys")
+    let [password, setPassword] = useState<string>("emilyspass")
+    let { mutate } = useLogin()
+    const router = useRouter()
 
     const handleLogin = (): void => {
-        if(name && password){
-            login({login:name, password:password})
-            throw redirect({ to: "/products" });
-        }
-    };
-
+        mutate ({name, password} ,
+            {onSuccess: ():Promise<void> => router.navigate({ to: '/products' })}
+        )
+}
 
     return (
         <Stack spacing={2} alignItems="center" mt={10}>
