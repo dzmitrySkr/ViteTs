@@ -4,11 +4,11 @@
 В проекте используется **Material UI** для интерфейса, **TanStack Query** для работы с серверным состоянием, **TanStack Router** для маршрутизации и **Zustand** для клиентского состояния.
 
 ### Deploy 
-  - **https://vitets.netlify.app
-  - 
+  - **https://vitets.netlify.app**
+ 
 ### Клонирование репозитория
-```bash
-git clone https://github.com/dzmitrySkr/ViteTs.git
+
+ - **git clone https://github.com/dzmitrySkr/ViteTs.git**
 
 ## 🚀 Стек технологий
 
