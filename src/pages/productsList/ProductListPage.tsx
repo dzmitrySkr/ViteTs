@@ -32,7 +32,8 @@ export const ProductsList = () => {
                 <Box
                     component="aside"
                     sx={{
-                        height: "100vh",
+
+                        height: "75vh",
                         backgroundColor: "primary.main",
                         boxShadow: 3,
                         borderRadius: 0,
@@ -86,8 +87,11 @@ export const ProductsList = () => {
                 </Box>
 
                 <Stack
+                    sx = {{
+                        width: "100%",
+                    }}
                     direction="column"
-                    justifyContent="center">
+                    justifyContent="space-between">
                     <ProductListContent isLoading={isLoading} data={data}/>
                     <ProductPagination/>
                 </Stack>
